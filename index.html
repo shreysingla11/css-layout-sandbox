@@ -769,9 +769,19 @@
       <div class="exhibit-content">The Plaintiff has started mentioning the Defendant in conversations with friends, family, and frankly anyone who will listen. He is not sorry about it.</div>
       <div class="exhibit-tag">Submitted as proof of compromised objectivity</div>
     </div>
+    <div class="exhibit" onclick="revealExhibit(this, 4)">
+      <div class="exhibit-label">Exhibit E</div>
+      <div class="exhibit-content">The Defendant claims, under oath, that she &ldquo;hates&rdquo; the Plaintiff's jokes. The record shows she laughs at every single one. The Defendant has even admitted, on at least one occasion, that she likes them. Motion to strike &ldquo;I hate your jokes&rdquo; from the record.</div>
+      <div class="exhibit-tag">Submitted as proof of perjury</div>
+    </div>
+    <div class="exhibit" onclick="revealExhibit(this, 5)">
+      <div class="exhibit-label">Exhibit F</div>
+      <div class="exhibit-content">The Plaintiff would like to remind the Court that he is not a professional. He is, however, very committed. The Defendant will understand.</div>
+      <div class="exhibit-tag">Submitted as proof of &mdash; actually, the Plaintiff is not sure. He is not a professional.</div>
+    </div>
   </div>
 
-  <div class="evidence-progress" id="evidence-progress">Exhibits unsealed: 0 / 4</div>
+  <div class="evidence-progress" id="evidence-progress">Exhibits unsealed: 0 / 6</div>
   <button class="btn" id="evidence-next" onclick="goTo('motion')">Proceed to the Motion &rarr;</button>
 </div>
 
@@ -899,7 +909,7 @@
     document.getElementById('evidence-progress').textContent =
       `Exhibits unsealed: ${exhibitsRevealed} / 4`;
 
-    if (exhibitsRevealed >= 4) {
+    if (exhibitsRevealed >= 6) {
       document.getElementById('evidence-next').classList.add('show');
     }
   }
