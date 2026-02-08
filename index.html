@@ -853,7 +853,7 @@
 
     <div class="verdict-btn-wrap">
       <button class="btn" onclick="acceptVerdict()">So Ordered &hearts;</button>
-      <button class="btn btn-red" onclick="objectVerdict()">I Object!</button>
+      <button class="btn btn-red" id="object-btn" onclick="objectVerdict()">I Object!</button>
     </div>
   </div>
 </div>
@@ -864,8 +864,7 @@
     <span class="final-heart">&hearts;</span>
     <div class="final-title">Case Closed.</div>
     <div class="final-text">
-      Happy First Valentine's Day, Nancy.<br>
-      I'm really glad it's with you.<br><br>
+      Happy First Valentine's Day, Nancy.<br><br>
       See you on the 14th. Bring your whole day.
     </div>
     <div class="final-date">February 14, 2026 &mdash; The First of Many</div>
@@ -965,17 +964,63 @@
   ];
 
   let objectionIndex = 0;
+  let objectionsDone = false;
 
   function objectVerdict() {
+    if (objectionsDone) return;
     const overlay = document.getElementById('overruled-overlay');
     const reason = document.getElementById('overruled-reason');
-    reason.textContent = objectionReasons[objectionIndex % objectionReasons.length];
+    reason.textContent = objectionReasons[objectionIndex];
     objectionIndex++;
     overlay.classList.add('active');
+
+    if (objectionIndex >= objectionReasons.length) {
+      objectionsDone = true;
+    }
   }
 
   function dismissOverruled() {
     document.getElementById('overruled-overlay').classList.remove('active');
+    if (objectionsDone) {
+      enableRunaway();
+    }
+  }
+
+  function enableRunaway() {
+    const btn = document.getElementById('object-btn');
+    btn.style.position = 'fixed';
+    btn.style.zIndex = '100';
+    btn.style.transition = 'none';
+
+    const moveAway = (e) => {
+      const rect = btn.getBoundingClientRect();
+      const btnCX = rect.left + rect.width / 2;
+      const btnCY = rect.top + rect.height / 2;
+      const dx = btnCX - e.clientX;
+      const dy = btnCY - e.clientY;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+
+      if (dist < 150) {
+        const pad = 20;
+        const maxX = window.innerWidth - rect.width - pad;
+        const maxY = window.innerHeight - rect.height - pad;
+        let newX = Math.random() * maxX;
+        let newY = Math.random() * maxY;
+        // Make sure it actually moves away from cursor
+        while (Math.abs(newX - e.clientX) < 120 && Math.abs(newY - e.clientY) < 120) {
+          newX = Math.random() * maxX;
+          newY = Math.random() * maxY;
+        }
+        btn.style.left = newX + 'px';
+        btn.style.top = newY + 'px';
+      }
+    };
+
+    document.addEventListener('mousemove', moveAway);
+    // Touch support
+    document.addEventListener('touchmove', (e) => {
+      moveAway({ clientX: e.touches[0].clientX, clientY: e.touches[0].clientY });
+    });
   }
 
   // ===== HEARTS ANIMATION =====
