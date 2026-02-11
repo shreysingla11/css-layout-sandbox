@@ -764,24 +764,20 @@
       <div class="exhibit-content">Those October video calls. The ones that were supposed to be quick but never were. That's when the Plaintiff knew he was in trouble.</div>
       <div class="exhibit-tag">Submitted as proof of intent to fall</div>
     </div>
+
     <div class="exhibit" onclick="revealExhibit(this, 3)">
       <div class="exhibit-label">Exhibit D</div>
-      <div class="exhibit-content">The Plaintiff has started mentioning the Defendant in conversations with friends, family, and frankly anyone who will listen. He is not sorry about it.</div>
-      <div class="exhibit-tag">Submitted as proof of compromised objectivity</div>
-    </div>
-    <div class="exhibit" onclick="revealExhibit(this, 4)">
-      <div class="exhibit-label">Exhibit E</div>
       <div class="exhibit-content">The Defendant claims, under oath, that she &ldquo;hates&rdquo; the Plaintiff's jokes. The record shows she laughs at every single one. The Defendant has even admitted, on at least one occasion, that she likes them.</div>
       <div class="exhibit-tag">Submitted as proof of perjury</div>
     </div>
-    <div class="exhibit" onclick="revealExhibit(this, 5)">
-      <div class="exhibit-label">Exhibit F</div>
+    <div class="exhibit" onclick="revealExhibit(this, 4)">
+      <div class="exhibit-label">Exhibit E</div>
       <div class="exhibit-content">The Plaintiff drafted this entire legal proceeding by himself. He would like to remind the Court that <span style="color:#c9a84c; font-style:italic;">&ldquo;he is not a professional.&rdquo;</span> But he knows someone who is, and he'd like to take her out on Valentine's Day.</div>
       <div class="exhibit-tag">Submitted as proof that the Plaintiff is, at minimum, endearing</div>
     </div>
   </div>
 
-  <div class="evidence-progress" id="evidence-progress">Exhibits unsealed: 0 / 6</div>
+  <div class="evidence-progress" id="evidence-progress">Exhibits unsealed: 0 / 5</div>
   <button class="btn" id="evidence-next" onclick="goTo('motion')">Proceed to the Motion &rarr;</button>
 </div>
 
@@ -907,9 +903,9 @@
     el.classList.add('revealed');
     exhibitsRevealed++;
     document.getElementById('evidence-progress').textContent =
-      `Exhibits unsealed: ${exhibitsRevealed} / 4`;
+      `Exhibits unsealed: ${exhibitsRevealed} / 5`;
 
-    if (exhibitsRevealed >= 6) {
+    if (exhibitsRevealed >= 5) {
       document.getElementById('evidence-next').classList.add('show');
     }
   }
